@@ -1,9 +1,4 @@
-<style>
-	body {
-	background-color:;
-}
-</style>
-<div class="form-left-col">
+<!-- <div class="form-left-col">
     <label>Id:</label>
     <input name="id" type="text" value="{{ event.id }}" disabled />
 
@@ -24,4 +19,147 @@
 
     <button class="save" ng:click="saveEvent()">Save</button>
     <button class="delete" ng:click="deleteEvent()">Delete</button>
+</div> -->
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<style>
+	body {
+        background-image: url("css.jpg");
+        background-size: cover;
+      }
+      h1 {
+        text-align: center;
+        font-size: 50px;
+        text-decoration: underline;
+        color: black;
+      }
+      h2 {
+      	text-align: center;
+        font-size: 30px;
+        text-decoration: underline;
+        color: black;
+      }
+      textarea {
+      	width: 400px;
+      	height: 100px;
+      }
+      button {
+        display: inline-block;
+        height: 40px;
+        padding: 0px 30px;
+        color: white;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 38px;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        white-space: nowrap;
+        background-color: red;
+        border-radius: 4px;
+        border: 1px solid rgb(187, 187, 187);
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+</style>
+<body ng-app="EduApp" ng-controller="MainCtrl">
+
+	<h1>Edu App</h1>
+
+<div class="container">
+
+<h2>Events</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Topic</th>
+      <th>Description</th>
+      <th>Venue</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="event in events">
+      <td>
+        <button class="btn" ng-click="editEvent(event.id)">
+          <span class="glyphicon glyphicon-pencil"></span>  Edit
+        </button>
+      </td>
+      <td>
+        <button class="btn" ng-click="deleteEvent(event.id)">
+          <span class="glyphicon glyphicon-pencil"></span>  Delete
+        </button>
+      </td>
+      <td>{{ event.topic }}</td>
+      <td>{{ event.description }}</td>
+      <td>{{ event.venue }}</td>
+      <td>{{ event.date }}</td>
+      <td>{{ event.time }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+<button class="btn btn-success" ng-click="editEvent('new')">
+<span class="glyphicon glyphicon-user"></span>  Create New Event
+</button>
+<hr>
+
+<form class="form-horizontal" ng-hide="hideform">
+  <h3 ng-show="edit">Create New Event:</h3>
+  <h3 ng-hide="edit">Edit Event:</h3>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Topic:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="topic" ng-disabled="!edit" placeholder="Topic">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Description:</label>
+    <div class="col-sm-10">
+    <textarea type="text" ng-model="description" ng-disabled="!edit" placeholder="Description"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Venue:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="venue" ng-disabled="!edit" placeholder="Venue">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Date:</label>
+    <div class="col-sm-10">
+    <input type="date" ng-model="date" ng-disabled="!edit" placeholder="Date">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Time:</label>
+    <div class="col-sm-10">
+    <input type="time" ng-model="time" ng-disabled="!edit" placeholder="Time">
+    </div>
+  </div>
+  <hr>
+  <button class="btn btn-success" ng-disabled="error || incomplete">
+  <span class="glyphicon glyphicon-save"></span>  Save Changes
+  </button>
+</form>
+
 </div>
+
+<script src= "app.js"></script>
+
+</body>
+</html>
+
